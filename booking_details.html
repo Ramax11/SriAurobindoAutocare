@@ -1,0 +1,675 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Autocare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular.js"></script>
+
+<style type="text/css" media="print">
+   .no-print { display: none; }
+</style>
+  
+</head>
+<body ng-app="app" ng-controller="myCtrl">
+<header class="center clearfix" id="navtop"> <a href="home.html"
+        class="logo fleft"><img src="images/logo.png" alt="Sri Aurobindo Autocare"></a>
+     <!-- <nav class="fright">
+        <ul>
+		<li><a href="#" class="">Home</a></li>
+		<li><a href="#">Tours</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Taxi Booking</a></li>
+		<li><a href="#">Tariffs</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Booking Instructions</a></li>
+		<li><a href="#" >Contact</a></li>
+	</ul>
+      </nav>-->
+    </header>
+<div class="container">
+<div align="right" style="padding-bottom::3px">
+ <label>Sivakumar&nbsp;&nbsp;</label>
+ <button type="button" class="btn btn-default">Logout</button>
+</div>
+	<div class="panel panel-default">
+    	<div align="left" class="panel-heading">
+        <h4>	
+        <label>Bookings</label>
+       </h4>
+        </div>
+			<div class="panel-body">
+            	<div class="col-sm-12">
+             		<div class="col-sm-2" style="margin-left:15px" >
+                		<button type="button" ng-print class="btn btn-default no-print">Print Booking</button>
+                    </div>
+                     <div class="col-sm-2" >
+        				<button type="button" class="btn btn-default">Cancel Booking</button>
+                    </div>
+                 </div>    
+            
+          
+    			<fieldset class="col-md-6 classWithPad">    	
+					<legend style="width:auto">View Booking</legend>
+                    	
+                      <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           							
+                                    <div class="col-sm-9" >
+                							
+                   					</div>
+             						<div class="col-sm-3" >
+                							<button ng-click="btnEditBooking()" type="button" class="btn btn-default no-print">Edit Booking</button>
+                   					</div>
+                                
+    					</div>
+                        <!--/form-group--> 
+                        
+                        
+                      <form>
+                      <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_no}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking Date</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_date | date:'dd-MM-yyyy'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                       
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking Mode</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_mode}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Trip Taken by</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_taken_by}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                                         
+                       
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Travel Date</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.travel_date | date : 'dd-mm-yyyy'}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Reporting Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_no | date : 'hh:mm a'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Start Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.start_date_time | date:'dd-MM-yyyy hh:mm a'}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">End Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.end_date_time | date:'dd-MM-yyyy hh:mm a'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Vehicle</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.vehicle}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">AC / Non AC</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.ac_nonac}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Trip Details</label>
+           					</div>
+                            <div class="col-sm-9">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_details}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Party</label>
+           					</div>
+                            <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.party}}</label>
+           					</div>
+						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Contact No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.mobile}}</label>
+           						</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">email</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.email}}</label>
+           						</div>
+
+						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Flight / Train No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.flight_train_no}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                    
+                    	 <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Pickup Address</label>
+                                		</div>
+                                		<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.pickup_address}}</label>
+           					</div>
+
+						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Drop Address</label>
+                                		</div>
+                                		<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.drop_address}}</label>
+           					</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Remarks</label>
+           					</div>
+                            <div class="col-sm-6">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.remarks}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Advance Paid</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.advance_paid}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Balance to Pay</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.balance_to_pay}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Trip Charges</label>
+           					</div>
+                            <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_charges}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Hrs Allowed</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.hrs_allowed}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Kms Allowed</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.kms_allowed}}</label>
+           						</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Status of Payment</label>
+           					</div>
+                            <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.status_of_payment}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Extra Hr Rate</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_hr_rate}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Extra Km Rate</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_km_rate}}</label>
+           						</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Driver</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.driver}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Vehicle No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.vehicle_no}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                    
+					</form>
+				</fieldset>				
+                
+                <fieldset class="col-md-5 classWithPad">    	
+					<legend style="width:auto">Trip Completion Details</legend>
+                    
+                    	<!--form-group-->
+                    	<div class="form-group col-sm-12">
+           							
+                                    <div class="col-sm-7" >
+                							
+                   					</div>
+             						<div class="col-sm-5" >
+                							<button ng-click="btnEditTripCompletion()" type="button" class="btn btn-default no-print">Edit Trip Completion</button>
+                   					</div>
+                                
+    					</div>
+                        <!--/form-group--> 
+                    
+                    
+						 <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Km in</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.km_in}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Time in</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.time_in }}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                       	 <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Km out</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.km_out}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Time out</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.time_out }}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Km run</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.km_run}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Total Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.total_time}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Driver Bata</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.driver_bata}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Trip Fare</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_charges}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                       <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Waiting Expenses</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.waiting_expenses}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Extra Hrs Amount</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_hrs_amt}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                       	<!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-6">
+             						<label style="font-size:12px" for="" class=""></label>
+                                </div>
+                                
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Extra Kms Amount</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_kms_amt}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             					<!--	<label style="font-size:12px" for="" class="">Diesel Qty</label>  -->
+                                </div>
+				
+                                <div class="col-sm-3">
+             					<!--	<label style="font-size:12px" for="" class="">{{tripDetails.diesel_qty}}</label>  -->
+           						</div>
+                		  
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Total Rs</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.total_rs}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Diesel Amount</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.diesel_amount}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Toll</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.toll}}</label>
+           						</div>
+                                
+    					</div>
+                      	/form-group-->
+                        
+                        <!--form-group
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Diesel Km</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.diesel_km}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Parking</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.parking}}</label>
+           						</div>
+                                
+    					</div>
+                        /form-group-->
+                        
+                        <!--form-group
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Average</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.average}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Bill Amount</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.bill_amount}}</label>
+           						</div>
+                                
+    					</div>
+                       /form-group-->
+                        
+                        
+				</fieldset>	
+                
+                
+                <fieldset class="col-md-5 classWithPad no-print">  
+                
+					<legend style="width:auto">Notifications</legend>
+						                 
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           							
+                                    <div class="col-sm-7" >
+                							
+                   					</div>
+             						<div class="col-sm-5" >
+                							<button ng-click="btnSendNotification()" type="button" class="btn btn-default">Send Notification</button>
+                   					</div>
+                                
+    					</div>
+                        <!--/form-group--> 
+                            
+		            
+                        <!--form-group
+                    	<div class="form-group">
+           						<div class="col-sm-6">
+             						<label style="font-size:12px" for="" class="">SMS</label>
+                                </div>
+                               
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">20-04-2017</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">04:30 PM</label>
+           						</div>
+                                
+    					</div>
+                        form-group-->
+                        
+                        <!--form-group
+                    	<div class="form-group">
+           						<div class="col-sm-12">
+             						<label style="font-size:12px" for="" class="">Your booking for Chennai Airport Drop has been confirmed for 10-05-2017 at 05:15 pm. etc.
+</label>
+                                </div>
+    					</div>&nbsp;
+                       /form-group-->
+                        
+                        
+                        <!--form-group
+                    	<div class="form-group">
+           						<div class="col-sm-6">
+             						<label style="font-size:12px" for="" class="">Email</label>
+                                </div>
+                               
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">20-04-2017</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">04:30 PM</label>
+           						</div>
+                                
+    					</div>
+                        /form-group -->
+                        
+                        <!--form-group
+                    	<div class="form-group">
+           						<div class="col-sm-12">
+             						<label style="font-size:12px" for="" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt malesuada leo id efficitur. Aliquam lacus mi, cursus at urna ut, porttitor aliquam nisi.
+</label>
+                                </div>
+    					</div>&nbsp;
+                        /form-group-->
+                 
+				</fieldset>		
+
+                
+				<div class="clearfix"></div>
+        		</div>
+                
+                
+                
+     		</div>
+           
+            
+		</div>           
+	</div>
+</div>
+
+<script>
+var app = angular.module('app', [], function($locationProvider){
+	$locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+});
+});
+app.controller('myCtrl', function($scope, $location, $http) {
+	$scope.tripId = $location.search().id;
+	
+	$http.get("http://54.179.185.66:8080/trip", {params:{"id": $scope.tripId}})
+		.then( function(response){
+			$scope.tripDetails = response.data;
+	});
+
+	$scope.btnEditBooking = function(){
+		window.location = "edit_booking.html?id="+$scope.tripId ;
+	};
+
+	$scope.btnEditTripCompletion = function(){
+		window.location ="edit_trip_completion.html?id="+$scope.tripId;
+	};
+
+	$scope.btnSendNotification = function(){
+		window.location ="send_notification.html?id="+$scope.tripId;
+	};
+});
+
+</script>
+
+
+
+
+
+</body>
+</html>

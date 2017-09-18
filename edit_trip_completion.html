@@ -1,0 +1,1081 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Autocare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular.js"></script>
+
+<style type="text/css" media="print">
+   .no-print { display: none; }
+</style>
+
+<!--Date Time Picker -->
+<link href="./datetimepicker3/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  
+</head>
+<body ng-app="app" ng-controller="myCtrl">
+<header class="center clearfix" id="navtop"> <a href="home.html"
+        class="logo fleft"><img src="images/logo.png" alt="Sri Aurobindo Autocare"></a>
+     <!-- <nav class="fright">
+        <ul>
+		<li><a href="#" class="">Home</a></li>
+		<li><a href="#">Tours</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Taxi Booking</a></li>
+		<li><a href="#">Tariffs</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Booking Instructions</a></li>
+		<li><a href="#" >Contact</a></li>
+	</ul>
+      </nav>-->
+    </header>
+<div class="container">
+<div align="right" style="padding-bottom::3px">
+ <label>Sivakumar&nbsp;&nbsp;</label>
+ <button type="button" class="btn btn-default">Logout</button>
+</div>
+	<div class="panel panel-default">
+    	<div align="left" class="panel-heading">
+        <h4>	
+        <label>Bookings</label>
+       </h4>
+        </div>
+			<div class="panel-body">
+            			<div class="col-sm-12">
+             				<div class="col-sm-2" style="margin-left:15px" >
+                				<button style="width:100px;"type="button" ng-click="goBack()" class="btn btn-default no-print">Back</button>
+                    			</div>
+                		 </div>    
+          
+    			<fieldset class="col-md-5 classWithPad">    	
+					<legend style="width:auto">View Booking</legend>
+                      <form>
+			<div class="form-group col-sm-12"></div>
+                      <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_no}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking Date</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_date | date:'dd-MM-yyyy'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                       
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking Mode</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_mode}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Trip Taken by</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_taken_by}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                                         
+                       
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Travel Date</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.travel_date | date : 'dd-mm-yyyy'}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Reporting Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_no | date : 'hh:mm a'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Start Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.start_date_time | date:'dd-MM-yyyy hh:mm a'}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">End Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.end_date_time | date:'dd-MM-yyyy hh:mm a'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Vehicle</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.vehicle}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">AC / Non AC</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.ac_nonac}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Trip Details</label>
+           					</div>
+                            <div class="col-sm-9">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_details}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Party</label>
+           					</div>
+                            <div class="col-sm-9">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.party}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Contact No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.mobile}}</label>
+           						</div>
+                            
+           					<div class="col-sm-1">
+             						<label style="font-size:12px" for="" class="">email</label>
+                                </div>
+                                <div class="col-sm-4">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.email}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                    
+                    	 <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Flight / Train No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.flight_train_no}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Pickup / Drop Address</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.pickup_drop_address}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="">Address</label>
+           					</div>
+                            <div class="col-sm-9">
+             					<label style="font-size:12px" for="">{{tripDetails.address}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Remarks</label>
+           					</div>
+                            <div class="col-sm-6">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.remarks}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Advance Paid</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.advance_paid}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Balance to Pay</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.balance_to_pay}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Trip Charges</label>
+           					</div>
+                            <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_charges}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Hrs Allowed</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.hrs_allowed}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Kms Allowed</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.kms_allowed}}</label>
+           						</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Status of Payment</label>
+           					</div>
+                            <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.status_of_payment}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Extra Hr Rate</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_hr_rate}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Extra Km Rate</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_km_rate}}</label>
+           						</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Driver</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.driver}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Vehicle No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.vehicle_no}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                    
+					</form>
+				</fieldset>				
+                
+                <fieldset class="col-md-6 classWithPad">    	
+					<legend style="width:auto">Edit Trip Completion Details</legend>
+                        <div class="form-group col-sm-12"></div>
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           		    <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Km in</label>
+                            </div>
+                            <div class="col-sm-3">
+             					<input ng-change="kminChange()" ng-model="kmin" class="form-control input-group-lg reg_name" type="text" tabindex="1">
+           					</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Time in</label>
+                            </div>
+                            <div class="col-sm-5">
+             					<div class="input-group date form_timein" data-date-format="dd-mm-yyyy HH:ii P" data-link-field="dtp_timein">
+                    				<input class="form-control" size="12" ng-model="datein" type="text" tabindex="3">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+						
+						
+           					</div>
+						<span style="color:red" ></span>
+						<input ng-model="timein" type="hidden" id="dtp_timein" >
+				
+                        	</div>
+			 </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Km out</label>
+                            </div>
+                            <div class="col-sm-3">
+             					<input ng-change="kmoutChange()" ng-model="kmout" class="form-control input-group-lg reg_name" type="text" tabindex="2">
+           					</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Time out</label>
+                            </div>
+                            <div class="col-sm-5">
+             					<div class="input-group date form_timeout" data-date-format="dd-mm-yyyy HH:ii P" data-link-field="dtp_timeout">
+                    				<input class="form-control" ng-model="dateout" size="12" type="text" tabindex="4">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+						
+						
+           					</div>
+						<span style="color:red" ></span>
+						<input ng-model="timeout" type="hidden" id="dtp_timeout" >
+				
+           		    </div>
+				
+                        </div>
+			<span  style="color:red; margin-left:30px">{{ermsg}}</span>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Km run</label>
+                             </div>
+                             <div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">{{kmrun}}</label>
+						<input type="hidden" ng-model="kmrun" >
+           					</div>
+                           <div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Total Time</label>
+                             </div>
+                             <div class="col-sm-4">
+             					<label style="font-size:12px" for="" class="">{{totaltime}}</label>
+						<input type="hidden" ng-model="totaltime" >
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+			
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Driver Bata</label>
+           					 </div>
+                            <div class="col-sm-3">
+             					<input ng-model="bata" class="form-control input-group-lg reg_name" type="text">
+				</div>
+				<div class="col-sm-3">
+					<select ng-model="batapercentage" ng-change="bataPerChange()" class="form-control" name="bata" tabindex="5">
+                                    					<option value="">Select</option>
+        								<option value="10%">10%</option>
+        								<option value="10%50">10% + Rs.50</option>
+        								<option value="12%">12%</option>
+        								<option value="15%">15%</option>
+      								</select>
+           					</div>
+			    
+                            
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Waiting Expenses</label>
+                            </div>
+                            <div class="col-sm-3">
+             					<input ng-model="waitingexpenses" class="form-control input-group-lg reg_name" tabindex="6" type="text">
+           					</div>
+
+				<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Trip Fare</label>
+                             </div>
+                             <div class="col-sm-4">
+             					<label style="font-size:12px" for="" class="">{{tripDetails.trip_charges}}</label>
+						<input type="hidden" ng-model="tripcharges">
+           					</div>
+                            
+                        </div>
+                        <!--/form-group-->
+
+			<!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-5">
+             					
+                            </div>
+                            
+                            <div class="col-sm-3" >
+             					<label style="font-size:12px" for="" class="">Extra Hrs Amount</label>
+                             </div>
+                             <div class="col-sm-4" >
+             					<label style="font-size:12px" for="" class="">{{extrahrsamt}}</label>
+						<input type="hidden" ng-model="extrahrsamt">
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-5">
+             					
+                            </div>
+                            
+                            <div class="col-sm-3" >
+             					<label style="font-size:12px" for="" class="">Extra Kms Amount</label>
+                             </div>
+                             <div class="col-sm-4" >
+             					<label style="font-size:12px" for="" class="">{{extrakmsamt}}</label>
+						<input type="hidden" ng-model="extrakmsamt">
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                        <div class="form-group col-sm-12">
+				<div class="col-sm-5">
+           				<!--	<div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">Diesel Qty</label>
+                           			 </div>
+                            			<div class="col-sm-3">
+             						<input ng-model="dieselqty" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+					-->
+				</div>
+                            <div class="col-sm-3" >
+             					<label style="font-size:12px" for="" class="">Total Rs</label>
+                             </div>
+                             <div class="col-sm-4" >
+             					<label style="font-size:12px" for="" class="">{{totalrs}}</label>
+						<input type="hidden" ng-model="totalrs">
+           					</div>
+                        </div>
+                        <!--/form-group-->
+
+                        <!--form-group-->
+               		     <div class="form-group col-sm-12">
+           					<input type="hidden" ng-model="waitingtimeamt">
+						<input type="hidden" ng-model="waitingkmsamt">
+                       	    </div>
+		
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                <!--        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Diesel Amount</label>
+                            </div>
+                            <div class="col-sm-3">
+             					<input ng-model="dieselamount" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Toll</label>
+                            </div>
+                            <div class="col-sm-4">
+             					<input ng-model="toll" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                      </div>
+		-->  
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                 <!--       <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Diesel Km</label>
+                            </div>
+                            <div class="col-sm-3">
+             					<input ng-model="dieselkm" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Parking</label>
+                            </div>
+                            <div class="col-sm-4">
+             					<input ng-model="parking" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                        </div>
+		-->
+                        <!--/form-group-->
+                     	
+                         <!--form-group-->
+               <!--      <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Average</label>
+                             </div>
+                             <div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">{{average}}</label>
+           					</div>
+                           <div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Bill Amount</label>
+                             </div>
+                             <div class="col-sm-4">
+             					<label style="font-size:12px" for="" class="">{{billamount}}</label>
+           					</div>
+                        </div>
+		-->
+                        <!--/form-group-->
+                        
+				</fieldset>	
+                
+                
+                <div class="col-md-12">
+                	<div  class="col-md-6">
+            			
+                    </div>
+                    <div style="padding:20px;" class="col-sm-6">
+                    	<button style="width:150px; margin-left:80px" type="button" ng-click="sendBtn()" class="btn btn-default">Save</button>
+            			<button style="width:150px; margin-left:60px" type="button" class="btn btn-default">Cancel</button>
+                    </div>
+            	</div>	
+
+                
+				<div class="clearfix"></div>
+        		</div>
+                
+                
+                
+     		</div>
+           
+            
+		</div>           
+	</div>
+</div>
+{{data}}
+<script type="text/javascript" src="./datetimepicker3/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./datetimepicker3/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./datetimepicker3/datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+    $('.form_timein').datetimepicker({
+        //language:  'fr',
+	pickerPosition: "auto",
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+	pickerPosition: 'bottom-left'
+
+    });
+    $('.form_timeout').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  0,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+	pickerPosition: 'bottom-left'
+
+    });
+	//$('.form_timein').datetimepicker('setEndDate', new Date());
+	//$('.form_timeout').datetimepicker('setEndDate', new Date());
+
+</script>
+
+<script>
+var app = angular.module('app', [], function($locationProvider){
+	$locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+});
+});
+app.controller('myCtrl', function($scope, $location, $http) {
+	$scope.tripId = $location.search().id;
+	
+	var trip;
+	function getTripDetails(){
+		$http.get("http://54.179.185.66:8080/trip", {params:{"id": $scope.tripId}})
+			.then( function(response){
+				trip = response.data;
+				$scope.tripDetails = trip;
+				$scope.tripcharges = trip.trip_charges;
+				bataCalculation(trip.bata_cal_trip_charge, trip.trip_details);
+		});
+	}
+	getTripDetails();
+
+
+	$http.get("http://54.179.185.66:8080/trip", {params:{"id": $scope.tripId}})
+			.then( function(response){
+				trip = response.data;
+				setTripCompletionDetails(trip);
+	});
+
+	function setTripCompletionDetails(trip){
+		$scope.kmin = trip.km_in;
+		$scope.kmout = trip.km_out;
+		$scope.kmrun = trip.km_run;
+		$scope.datein = new Date(trip.date_in);
+		$scope.dateout = new Date(trip.date_out);
+		$scope.totaltime = trip.total_time;
+		$scope.bata = trip.driver_bata;
+		$scope.batapercentage = trip.bata_percentage;
+		$scope.tripcharges = trip.trip_charges;
+		$scope.waitingexpenses = trip.waiting_expenses;
+		$scope.extrahrsamt = trip.extra_hrs_amt;
+		$scope.extrakmsamt = trip.extra_kms_amt;
+		$scope.totalrs = trip.total_rs;
+		
+	}
+
+	$scope.kminChange = function(){
+		calculateKmRun();
+		getKmRunandKmsAllowed();
+		
+	}
+	$scope.kmoutChange = function(){
+		calculateKmRun();
+		getKmRunandKmsAllowed();
+		
+	}
+	var kmrun;
+	function calculateKmRun(){
+		var kmin = $scope.kmin;
+		var kmout = $scope.kmout;
+	
+		kmrun = kmin - kmout;
+		var math = Math.max(0,kmrun);
+		
+		if (math == 0){
+			$scope.ermsg = "Km out should be less than of Km In";
+			kmrun = 0;
+			$scope.kmrun = kmrun;
+		}else{
+			kmrun = kmin - kmout;
+			$scope.kmrun = kmrun;
+			$scope.ermsg ="";
+			
+			return kmrun;
+		}
+	}
+	
+	/*var a = kmrun - $scope.tripDetails.kms_allowed;
+	var math2 = Math.max(0,a);
+	if(math2 == 0){
+		$scope.extrakmsamt = 0;
+	}else{
+		$scope.extrakmsamt = a * trip.extra_km_rate;
+	}*/
+
+	$scope.goBack = function(){
+		window.history.back();
+	}
+
+	$scope.bataPerChange = function(){
+		getTripDetails();
+		totalRS();
+		totalWaitingExpenses();
+
+	}
+
+	function bataCalculation(tripCharge, tripDetails){
+
+		tripDetails = tripDetails.toLowerCase();	
+		
+		/*if(tripDetails.indexOf('chennai') !== -1 ){	
+			console.log("true");
+
+			switch($scope.batapercentage){
+				case "10%":
+					$scope.bata = tripCharge * (10/100);
+					break;
+				case "10%50":
+					$scope.bata = (tripCharge * (10/100) )+ 50;
+					break;
+				case "12%":
+					$scope.bata = tripCharge * (12/100);
+					break;
+				case "15%":
+					$scope.bata = tripCharge * (15/100);
+					break;
+			}
+			
+		}*/
+
+		switch($scope.batapercentage){
+			case "10%":
+				$scope.bata = tripCharge * (10/100);
+				break;
+			case "10%50":
+				$scope.bata = (tripCharge * (10/100) )+ 50;
+				break;
+			case "12%":
+				$scope.bata = tripCharge * (12/100);
+				break;
+			case "15%":
+				$scope.bata = tripCharge * (15/100);
+				break;
+			}
+
+	}
+
+
+	// Getting date from datepicker and put data in table
+	$('.form_timein').datetimepicker()
+	.on('changeDate', function(ev){
+		$scope.timein = ev.date.valueOf();
+		
+		calculateTotalTime();
+		$scope.totaltime = totalTime;
+
+		var date = new Date($scope.timein);
+		var yr = date.getFullYear();
+		var mm = date.getMonth()+1;
+		var dd = date.getDate()+1;
+		date = yr+'-'+mm+'-'+dd;
+		console.log(date);
+		$('.form_timeout').datetimepicker('show');
+		//$('.form_timeout').datetimepicker('setEndDate', date);
+		
+	});
+	
+	$('.form_timeout').datetimepicker()
+	.on('changeDate', function(ev){
+		$scope.timeout = ev.date.valueOf();
+		
+		calculateTotalTime();
+		$scope.totaltime = totalTime;
+		
+	});
+
+	var totalTime;
+	function calculateTotalTime(){
+		var tin = new Date($scope.timein);
+		var tout = new Date($scope.timeout);
+		var diffMS = Math.abs(tin.getTime() - tout.getTime());
+
+		console.log("Time Diff: "+diffMS);
+		// Converting MilliSeconds to Hrs, Mins, Secs.
+		var hrs = Math.floor(diffMS / 3600000); 
+		var mins = Math.floor((diffMS / 60000)%60);
+		var secs = Math.floor((diffMS / 1000)%60);
+		totalTime = (hrs<10? '0':'')+hrs + ":"+ (mins<10? '0':'') + mins +":"+ (secs<10? '0':'') +secs;
+		console.log("Total TIme: "+ totalTime);
+
+		$http.get("http://54.179.185.66:8080/trip", {params:{"id": $scope.tripId}})
+			.then( function(response){
+				trip = response.data;
+				var hrsAllowed = trip.hrs_allowed;
+				var extraHrRate = trip.extra_hr_rate;
+				var totalHrsAllowed = trip.total_hrs_allowed;
+				var bataExtraHrRate = trip.bata_cal_extra_hr_rate;
+				calculateExtraHrs(totalTime, hrsAllowed, extraHrRate, totalHrsAllowed, bataExtraHrRate);
+				
+		});	
+		
+	}
+
+	function calculateExtraHrs(totalTime, hrsAllowed, extraHrRate, totalHrsAllowed, bataExtraHrRate){
+		var tHrsAllowed = totalHrsAllowed; //addTimes(hrsAllowed);
+		// Converting MilliSeconds to Hrs, Mins, Secs.
+		/*var hrs = Math.floor(tHrsAllowed / 3600000); 
+		var mins = Math.floor((tHrsAllowed / 60000)%60);
+		var secs = Math.floor((tHrsAllowed / 1000)%60);
+		tHrsAllowed = (hrs<10? '0':'')+hrs + ":"+ (mins<10? '0':'') + mins +":"+ (secs<10? '0':'') +secs;
+		console.log(tHrsAllowed); */
+		
+		var parts1 = totalTime.split(/:/);
+		totalTime = (parseInt(parts1[0], 10) * 60 * 60 * 1000) +
+                		       (parseInt(parts1[1], 10) * 60 * 1000) + 
+                		       (parseInt(parts1[2], 10) * 1000);
+
+		var parts2 = tHrsAllowed.split(/:/);
+		tHrsAllowed = (parseInt(parts2[0], 10) * 60 * 60 * 1000) +
+                		       (parseInt(parts2[1], 10) * 60 * 1000) + 
+                		       (parseInt(parts2[2], 10) * 1000);
+
+		var newDate = new Date();
+		newDate.setTime(totalTime - tHrsAllowed);
+		
+		var extraHrs = newDate.getTime();
+		console.log(extraHrs);
+		// Converting MilliSeconds to Hrs, Mins, Secs.
+		var hrs1 = Math.floor(extraHrs / 3600000); 
+		var mins1 = Math.floor((extraHrs / 60000)%60);
+		var secs1 = Math.floor((extraHrs / 1000)%60);
+		extraHrs = (hrs1<10? '0':'')+hrs1 + ":"+ (mins1<10? '0':'') + mins1 +":"+ (secs1<10? '0':'') +secs1;
+		console.log(extraHrs);
+		
+		if(extraHrs <= "00:00:00"){
+			$scope.extrahrsamt = 0;
+		}else {
+			calculateExtraHrsAmt(hrs1, mins1, extraHrRate, bataExtraHrRate);
+		}
+	}
+
+	function calculateExtraHrsAmt(hrs1, mins1, extraHrRate, bataExtraHrRate){
+		totalRS();
+		totalWaitingExpenses();
+		
+		// Trip calculation
+		var extrahrsAmt = hrs1 * extraHrRate;
+		console.log(extrahrsAmt);
+		var extraMinsAmt;
+
+		// Bata calculation for driver
+		var waitingHrsAmt = hrs1 * bataExtraHrRate;
+		var waitingMinsAmt;
+
+		if(mins1 <= 10 ){
+			extraMinsAmt = 0;
+			waitingMinsAmt = 0;
+			$scope.extrahrsamt = extrahrsAmt + extraMinsAmt;
+			$scope.waitingtimeamt = waitingHrsAmt + waitingMinsAmt;
+			totalRS();
+			totalWaitingExpenses();
+			return;
+		}else if(mins1 <= 40 ){
+			extraMinsAmt = (extraHrRate/2);
+			waitingMinsAmt = (bataExtraHrRate/2);
+			$scope.extrahrsamt = parseInt(extrahrsAmt) + parseInt(extraMinsAmt);
+			$scope.waitingtimeamt = parseInt(waitingHrsAmt) + parseInt(waitingMinsAmt);
+			totalRS();
+			totalWaitingExpenses();
+			return;
+		}else if(mins1 <= 59 ){
+			extraMinsAmt = extraHrRate;
+			waitingMinsAmt = bataExtraHrRate;
+			$scope.extrahrsamt = parseInt(extrahrsAmt) + parseInt(extraMinsAmt);
+			$scope.waitingtimeamt = parseInt(waitingHrsAmt) + parseInt(waitingMinsAmt);
+			totalRS();
+			totalWaitingExpenses();
+			return;
+		}
+	}
+
+	function addTimes(hrsAllowed){
+		var timePeriod = hrsAllowed;
+		console.log(timePeriod); 
+
+		var parts = timePeriod.split(/:/);
+		var timePeriodMillis = (parseInt(parts[0], 10) * 60 * 60 * 1000) +
+                		       (parseInt(parts[1], 10) * 60 * 1000) + 
+                		       (parseInt(parts[2], 10) * 1000);
+
+		var newDate = new Date();
+		newDate.setTime(timePeriodMillis + timePeriodMillis);
+		console.log(newDate.getTime());
+		return newDate.getTime();
+	}
+
+	
+	function getKmRunandKmsAllowed(){
+		var kmRun = calculateKmRun();
+		totalRS();
+		totalWaitingExpenses();
+		$http.get("http://54.179.185.66:8080/trip", {params:{"id": $scope.tripId}})
+			.then( function(response){
+				trip = response.data;
+				var kmsAllowed = trip.total_kms_allowed;
+				var extraKmRate = trip.extra_km_rate;
+				var bataExtraKmRate = trip.bata_cal_extra_km_rate;
+				var extraKmsAmt = calculateExtraKmsAmt(kmRun, kmsAllowed, extraKmRate, bataExtraKmRate);
+		});	
+	}
+	
+	var extraKms;
+	function calculateExtraKmsAmt(kmRun, kmsAllowed, extraKmRate, bataExtraKmRate){
+		
+		var xKmsAmt;
+		extraKms = kmRun - kmsAllowed;
+		//console.log(kmRun+" "+kmsAllowed+": "+extraKms);
+
+		// Extra km Bata calculation for driver
+
+		if(extraKms <= 0 ){
+			$scope.extrakmsamt = 0;
+			xKmsAmt = 0;
+			$scope.waitingkmsamt= 0;
+			//console.log(xKmsAmt);
+			return xKmsAmt;
+		}else {
+			xKmsAmt = extraKms * extraKmRate;//+ " (Extra Kms : " + extraKms +")";
+			$scope.extrakmsamt = xKmsAmt;
+			$scope.waitingkmsamt= extraKms * bataExtraKmRate;
+			//console.log(xKmsAmt);
+			totalRS();
+			totalWaitingExpenses();
+			return xKmsAmt;
+		}
+	}
+
+	
+	function totalRS(){
+		//if($scope.tripcharges != null && $scope.extrahrsamt != null && $scope.extrakmsamt !=null ){
+			var totalRs = parseInt($scope.tripcharges) + parseInt($scope.extrahrsamt) + parseInt($scope.extrakmsamt);
+			//console.log($scope.tripcharges +" "+ $scope.extrahrsamt +" "+ $scope.extrakmsamt);
+			$scope.totalrs = totalRs;
+			//console.log(totalRs);
+
+			return totalRs;
+		//}
+	}
+
+	function totalWaitingExpenses(){
+		//if($scope.waitingtimeamt != null && $scope.waitingkmsamt != null ){
+			var totalwaitingamt = parseInt($scope.waitingtimeamt) + parseInt($scope.waitingkmsamt) ;
+			$scope.waitingexpenses = totalwaitingamt;
+
+			return totalwaitingamt;
+		//}
+	}
+	
+	
+	$scope.sendBtn = function(){
+
+		$http.get("http://54.179.185.66:8080/trip", {params:{"id": $scope.tripId}})
+			.then( function(response){
+				var tripData = response.data;
+			
+				var timein = new Date($scope.timein);
+				var yr = timein.getFullYear();
+				var mm = timein.getMonth()+1;
+				var dd = timein.getDate()+1;
+				var hh = timein.getHours();
+				var mm = timein.getMinutes();
+				timein = yr+'-'+mm+'-'+dd +" "+ hh +":"+mm;
+	
+				var timeout = new Date($scope.timeout);
+				var yr1 = timeout.getFullYear();
+				var mm1 = timeout.getMonth()+1;
+				var dd1 = timeout.getDate()+1;
+				var hh1 = timeout.getHours();
+				var mm1 = timeout.getMinutes();
+				timeout = yr1+'-'+mm1+'-'+dd1 +" "+ hh1 +":"+mm1;
+
+				var data ={
+				event : tripData.reporting_time +" "+ tripData.party ,
+				where : tripData.booking_no +" "+ tripData.booking_mode +" "+ tripData.vehicle +" "+ tripData.vehicle_no +" "+ tripData.driver ,
+				calendar : '',
+				description : tripData.pickup_address +" "+ tripData.flight_train_no +" "+ tripData.mobile +" "+ "Pl pay Rs."+tripData.trip_charges+"/-"+tripData.remarks+" For "+ tripData.hrs_allowed +"&"+tripData.kms_allowed ,
+				startdate : tripData.start_date_time,
+				enddate : tripData.end_date_time,
+				details : {
+		  			booking_no : tripData.booking_no,
+					booking_date : tripData.booking_date,
+					booking_mode : tripData.booking_mode,
+					trip_taken_by : tripData.trip_taken_by,
+					travel_date : tripData.travel_date,
+		  			reporting_time : tripData.reporting_time,
+					start_date_time : tripData.start_date_time,
+					end_date_time : tripData.end_date_time,
+					vehicle : tripData.vehicle,
+					ac_nonac : tripData.ac_nonac,
+					trip_details : tripData.trip_details,
+		  			party : tripData.party,
+		  			mobile : tripData.mobile,
+					email : tripData.email,
+					flight_train_no : tripData.flight_train_no,
+					pickup_address : tripData.pickup_address,
+					drop_address : tripData.drop_address,
+					remarks : tripData.remarks,
+					advance_paid : tripData.advance_paid,
+					balance_to_pay : tripData.balance_to_pay,
+					trip_charges : tripData.trip_charges,
+					hrs_allowed : tripData.hrs_allowed,
+					kms_allowed : tripData.kms_allowed,
+					status_of_payment : tripData.status_of_payment,
+					extra_hr_rate : tripData.extra_hr_rate,
+					extra_km_rate : tripData.extra_km_rate,
+					driver : tripData.driver,
+  					vehicle_no: tripData.vehicle_no,
+					total_hrs_allowed: tripData.total_hrs_allowed,
+					total_kms_allowed: tripData.total_kms_allowed,
+					bata_cal_extra_hr_rate: tripData.bata_cal_extra_hr_rate,
+					bata_cal_extra_km_rate: tripData.bata_cal_extra_km_rate,
+					bata_cal_trip_charge: tripData.bata_cal_trip_charge,
+					km_in : $scope.kmin,
+					km_out : $scope.kmout,
+					km_run : $scope.kmrun,
+					time_in : timein,
+					time_out : timeout,
+  					total_time : $scope.totaltime,
+					driver_bata : $scope.bata,
+					bata_percentage : $scope.batapercentage,
+					waiting_expenses : $scope.waitingexpenses,
+					extra_hrs_amt : $scope.extrahrsamt,
+  					extra_kms_amt : $scope.extrakmsamt,
+ 		 			total_rs : $scope.totalrs
+					}
+				};
+
+            
+           		 	var config = {
+                			headers : {
+                   			 'Content-Type': 'application/json'
+         			       }
+            			};
+
+				$scope.data = data;
+
+			        $http.put("http://54.179.185.66:8080/tripcomplete", data, {params:{"id": $scope.tripId}})
+					.then( function(response){
+			                	$scope.data = response.data;
+	
+						window.location = "booking_details.html?id="+$scope.tripId;
+
+			        });
+
+		});
+
+    }
+	
+	
+	
+
+});
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Autocare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular.js"></script>
+
+<!--Date Time Picker -->
+<link href="./datetimepicker3/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+
+<script>
+	function setColor(color){
+		document.getElementById("svgcolor").style.fill = color;
+	}
+</script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<header class="center clearfix" id="navtop"> <a href="home.html"
+        class="logo fleft"><img src="images/logo.png" alt="Sri Aurobindo Autocare"></a>
+     <!-- <nav class="fright">
+        <ul>
+		<li><a href="#" class="">Home</a></li>
+		<li><a href="#">Tours</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Taxi Booking</a></li>
+		<li><a href="#">Tariffs</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Booking Instructions</a></li>
+		<li><a href="#" >Contact</a></li>
+	</ul>
+      </nav>-->
+</header>
+
+<div class="container" ng-app="">
+<div align="right" style="padding-bottom::3px">
+ <label>Sivakumar&nbsp;&nbsp;</label>
+ <button type="button" class="btn btn-default">Logout</button>
+</div>
+	<div class="panel panel-default">
+    	<div align="left" class="panel-heading">
+        <h4>
+        <label>Bookings</label>
+       </h4>
+        </div>
+			<div class="panel-body">
+
+                <div class="col-sm-2">
+			<a href="new_booking.html" target="_blank">
+                	<button type="button" class="btn btn-default">New Booking</button>
+        		</a>
+                </div>
+
+                <div class="form-group col-sm-8" align="right">
+
+                    	<button style="font-size:14px" ng-click="prevBtn()">Previous day</button>
+                        <button style="font-size:14px" ng-click="todayBtn()">&nbsp;Today&nbsp;</button>
+                        <button style="font-size:14px" ng-click="nextBtn()">Next day</button>
+		</div>
+		<div class="col-sm-2">
+                         <div class="input-group date form_date" data-date-format="yyyy-mm-dd" data-link-field="dtp_date">
+                    		<input ng-model="date" class="form-control" size="16" type="text">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                	</div>
+			<input type="hidden" ng-model="pickdate" id="dtp_date" /><br/>
+                </div>
+
+ &nbsp;
+ <table class="table table-bordered table-hover" >
+    <thead>
+      <tr>
+        <th></th>
+        <th>Booking No</th>
+        <th>Reporting Time</th>
+        <th>Party</th>
+        <th>Mobile</th>
+        <th>Trip Details</th>
+        <th>Vehicle No.</th>
+        <th>Vehicle</th>
+        <th>Driver</th>
+        <th>Booking Mode</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr ng-repeat="x in myWelcome" ng-click="goTo(x)" target="_blank">
+        <td align="center">
+         <svg onload="setColor('red')" height="15" width="15">
+  			<circle id="svgcolor" cx="8" cy="8" r="6" style="fill:blue; stroke:black; stroke-width:1" />
+		</svg>
+
+        </td>
+        <td>{{x.booking_no}}</td>
+        <td>{{x.reporting_time | date:'hh:mm a'}}</td>
+        <td>{{x.party}}</td>
+        <td>{{x.mobile}}</td>
+        <td>{{x.trip_details}} {{notrips}}</td>
+        <td>{{x.vehicle_no}}</td>
+        <td>{{x.vehicle}}</td>
+        <td>{{x.driver}}</td>
+        <td>{{x.booking_mode}}</td>
+      </tr>
+
+
+    </tbody>
+
+  </table>
+
+
+
+
+
+
+				<div class="clearfix"></div>
+        		</div>
+
+
+
+     		</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- <script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $http.get("http://localhost:8080/trips?timeMin=2017-06-01T11:28:41.358Z&timeMax=2017-06-02T11:28:41.358Z").then(function (response) {
+      $scope.myWelcome = response.data;
+      $scope.notrips = response.data.message;
+  });
+});
+</script> -->
+
+<!--DateTime Picker Script -->
+<script type="text/javascript" src="./datetimepicker3/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./datetimepicker3/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./datetimepicker3/datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+    $('.form_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+
+</script>
+
+<script>
+var startdate = new Date();
+startdate.setHours(00,00,00,00);
+var enddate = new Date();
+enddate.setHours(24,00,00,00);
+
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  	$http.get("http://54.179.185.66:8080/trips", {params:{"timeMin": startdate, "timeMax": enddate }})
+	.then(function (response) {
+      		$scope.myWelcome = response.data;
+      		$scope.notrips = response.data.message;
+  	});
+
+  	$scope.goTo = function(x) {
+		var id = x.id;
+	    	id = id.slice(0,-17);
+	    	console.log(id);
+		window.open("booking_details.html?id="+id);
+	}
+
+
+
+	// Set today date as default
+	var today = new Date();
+	var curDate = new Date(today);
+	var dd = curDate.getDate();
+	if (dd < 10){dd = '0'+dd};
+	var mm = curDate.getMonth()+1;
+	if (mm < 10){mm = '0'+mm};
+	var yyyy = curDate.getFullYear();
+	var todayDate = yyyy+'-'+mm+'-'+dd;
+	$scope.date = todayDate;
+	console.log(curDate);
+
+	// Getting trip's on Today
+	$scope.todayBtn = function(){
+		var td = new Date();
+		var dd = td.getDate();
+		if (dd < 10){dd = '0'+dd};
+		var mm = td.getMonth()+1;
+		if (mm < 10){mm = '0'+mm};
+		var yyyy = td.getFullYear();
+		var tday = yyyy+'-'+mm+'-'+dd;
+		var t_startDate = new Date(tday);
+		t_startDate.setHours(00,00,00,00);
+		var t_endDate = new Date(tday);
+		t_endDate.setHours(23,59,59,00);
+
+		$scope.date = tday;
+		curDate = new Date(tday);
+		console.log(tday);
+
+		$http.get("http://54.179.185.66:8080/trips", {params:{"timeMin": t_startDate, "timeMax": t_endDate }})
+		.then(function (response) {
+      			$scope.myWelcome = response.data;
+      			$scope.notrips = response.data.message;
+  		});
+	}
+
+	// Getting trip's on Previous Day(s)
+	$scope.prevBtn = function(){
+		curDate.setDate(curDate.getDate() - 1);
+		var dd = curDate.getDate();
+		if (dd < 10){dd = '0'+dd};
+		var mm = curDate.getMonth()+1;
+		if (mm < 10){mm = '0'+mm};
+		var yyyy = curDate.getFullYear();
+		var yesterday = yyyy+'-'+mm+'-'+dd;
+		var p_startDate = new Date(yesterday);
+		p_startDate.setHours(00,00,00,00);
+		var p_endDate = new Date(yesterday);
+		p_endDate.setHours(23,59,59,00);
+
+		console.log(p_startDate +" " + p_endDate);
+		$scope.date = yesterday;
+
+		$http.get("http://54.179.185.66:8080/trips", {params:{"timeMin": p_startDate, "timeMax": p_endDate }})
+		.then(function (response) {
+      			$scope.myWelcome = response.data;
+      			$scope.notrips = response.data.message;
+  		});
+	}
+
+	// Getting trip's on Next Day(s)
+
+	$scope.nextBtn = function(){
+		curDate.setDate(curDate.getDate() + 1);
+		var dd = curDate.getDate();
+		if (dd < 10){dd = '0'+dd};
+		var mm = curDate.getMonth()+1;
+		if (mm < 10){mm = '0'+mm};
+		var yyyy = curDate.getFullYear();
+		var tomorrow = yyyy+'-'+mm+'-'+dd;
+		var n_startDate = new Date(tomorrow);
+		n_startDate.setHours(00,00,00,00);
+		var n_endDate = new Date(tomorrow);
+		n_endDate.setHours(23,59,59,00);
+
+		console.log(n_startDate +" " +n_endDate);
+		$scope.date = tomorrow;
+
+		$http.get("http://54.179.185.66:8080/trips", {params:{"timeMin": n_startDate, "timeMax": n_endDate }})
+		.then(function (response) {
+      			$scope.myWelcome = response.data;
+      			$scope.notrips = response.data.message;
+  		});
+	}
+
+	// Getting date from datepicker and put data in table
+	var bookdate;
+	$('.form_date').datetimepicker()
+	.on('changeDate', function(ev){
+		$scope.pickdate = ev.date.valueOf();
+		var bdate = $scope.pickdate;
+		var d = new Date(bdate);
+		var pick_startDate = new Date(d);
+		pick_startDate.setHours(00,00,00,00);
+		var pick_endDate = new Date(d);
+		pick_endDate.setHours(23,59,59,00);
+		console.log(pick_startDate +" " +pick_endDate);
+
+		$http.get("http://54.179.185.66:8080/trips", {params:{"timeMin": pick_startDate, "timeMax": pick_endDate }})
+		.then(function (response) {
+      			$scope.myWelcome = response.data;
+      			$scope.notrips = response.data.message;
+			curDate = new Date(pick_startDate);
+  		});
+
+	});
+
+
+
+
+
+
+
+
+});
+
+
+</script>
+
+
+</body>
+</html>

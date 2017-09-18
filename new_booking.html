@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Autocare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/style.css" />
+
+ <script src="js/angular.min.js"></script>
+  <script src="js/angular.js"></script>
+
+<!--Auto complete 
+  <link rel="stylesheet" href="autocomplete/angucomplete.css"/>  -->
+
+<!--Aungucomplete-alt complete
+    <link rel="stylesheet" href="angucomplete-alt/css/structure.css"/>
+    <link rel="stylesheet" href="angucomplete-alt/css/angucomplete-alt.css"/>   -->
+
+<!-- Allmighty Autocomplete -->
+<link rel="stylesheet" href="allmighty-autocomplete/style/autocomplete.css">
+
+
+<!--Date Time Picker -->
+<link href="./datetimepicker3/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+<!-- angular-filter for getting unique vehicle's -->
+<script src="js/angular-filter.min.js"></script>
+
+</head>
+<body ng-app="app" ng-controller="MainController">
+<header class="center clearfix" id="navtop"> <a href="home.html"
+        class="logo fleft"><img src="images/logo.png" alt="Sri Aurobindo Autocare"></a>
+     <!-- <nav class="fright">
+        <ul>
+		<li><a href="#" class="">Home</a></li>
+		<li><a href="#">Tours</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Taxi Booking</a></li>
+		<li><a href="#">Tariffs</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Booking Instructions</a></li>
+		<li><a href="#" >Contact</a></li>
+	</ul>
+      </nav>-->
+    </header>
+<div class="container">
+<div align="right" style="padding-bottom::3px">
+ <label>Sivakumar&nbsp;&nbsp;</label>
+ <button type="button" class="btn btn-default">Logout</button>
+</div>
+	<div class="panel panel-default">
+    	<div align="left" class="panel-heading">
+        <h4>
+        <label>Bookings</label>
+       </h4>
+        </div>
+			<div class="panel-body">
+    			<fieldset class="col-md-6 classWithPad">
+					<legend style="width:auto">New Booking</legend>
+                    	<!--form-group-->
+                      <form name="newBookingForm">
+                    	<div class="form-group">
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="bookingno" class="">Booking No *</label>
+             					<input ng-model="bookingno" class="form-control input-group-lg" type="text" name="bno" placeholder="Booking No" tabindex="1" required>
+						<span style="color:red" ng-show="newBookingForm.bno.$touched && newBookingForm.bno.$invalid">
+							<span ng-show="newBookingForm.bno.$error.required">Booking Number is required.</span>
+						</span>
+						</div>
+           					<div class="col-sm-6">
+             					    <label style="font-size:12px" for="sel1" class="">Booking Date</label>
+						    <div class="input-group date form_date" data-date-format="dd-M-yyyy" data-link-field="dtp_booking_date" >
+                    						<input class="form-control" size="16" type="text" tabindex="2" >
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+
+                				    </div>
+							<input type="hidden" ng-model="bookingdate" id="dtp_booking_date"  /> </br>
+						</div>
+    					</div>&nbsp;
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                    	<div class="form-group">
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Booking Mode</label>
+
+                                    				<select ng-model="bookingmode" class="form-control" name="bMode" tabindex="3">
+                                    					<option value="">Select</option>
+        								<option value="web">Web</option>
+        								<option value="email">Email</option>
+        								<option value="phonecall">Phone Call</option>
+        								<option value="in-person">In-Person</option>
+									<option value="sms">SMS</option>
+      								</select>
+
+
+           					</div>
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Trip Taken by</label>
+
+      								<select ng-model="triptakenby" class="form-control" tabindex="4" >
+                                    					<option value="">Select</option>
+        								<option value="Utpal Ghosh">Utpal Ghosh</option>
+        								<option value="Suchitra Naik">Suchitra Naik</option>
+        								<option value="Poorvi Sanghvi">Poorvi Sanghvi</option>
+        								<option value="Sivasankari">Sivasankari</option>
+                                        				<option value="Sivakumar">Sivakumar</option>
+      								</select>
+
+          					</div>
+    					</div>&nbsp;
+                        <!--/form-group-->
+
+
+                        <!--form-group-->
+                    	<div class="form-group hackyhack">
+           					<div class="col-sm-6">
+             					    <label style="font-size:12px" for="" class="">Travel Date</label>
+             					    <div class="input-group date form_traveldate" data-date-format="dd-M-yyyy" data-link-field="dtp_travel_date">
+                    						<input class="form-control" size="16" type="text" tabindex="5">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                				    </div>
+							<input type="hidden" ng-model="traveldate" id="dtp_travel_date" /><br/>
+           					</div>
+           					<div class="col-sm-6">
+             					   <label style="font-size:12px" for="" class="">Reporting Time</label>
+             					   <div class="input-group date form_time" data-date-format="HH:ii P" data-link-field="dtp_reporting_time">
+                    					<input type="text" class="form-control" size="16" type="text" tabindex="6">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                				   </div>
+      							<input ng-model="reportingtime" type="hidden" id="dtp_reporting_time" /><br/>
+          					</div>
+    					</div>
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                    		<div class="form-group">
+           			   <div class="col-sm-6" >
+
+             				<label style="font-size:12px" for="" class="">Start DateTime *</label>
+      					<div id="startdatetimepicker" class="input-group date form_startdatetime" data-date-format="dd M yyyy - HH:ii P" data-link-field="dtp_startdate">
+                    				<input class="form-control" size="16" type="text" name="sDateTime" tabindex="7">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+
+
+
+                			</div>
+
+						<span style="color:red" >{{sDateTime_required}}</span>
+						<input ng-model="startdatetime" type="hidden" id="dtp_startdate" /><br/>
+           			   </div>
+           			   <div class="col-sm-6">
+             				<label style="font-size:12px" for="" class="">End DateTime *</label>
+      					<div class="input-group date form_enddatetime" data-date-format="dd M yyyy - HH:ii P" data-link-field="dtp_enddate">
+                    				<input name="enddatetime" id="enddatetime" class="form-control" size="16" type="text" tabindex="8">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+
+                			</div>
+						<span style="color:red" >{{eDateTime_required}}</span>
+						<input ng-model="enddatetime" type="hidden" id="dtp_enddate" /><br/>
+          			   </div>
+    				</div>
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                    	<div class="form-group">
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Vehicle *</label>
+
+      								<select ng-change="vehicleCheck()" ng-model="vehicle" class="form-control" name="v" tabindex="9" required>
+                                    				    <option value="">Select</option>
+        							    <option ng-repeat="vehicle in vehicleDetails | unique: 'gsx$name.$t'">{{vehicle.gsx$name.$t}}</option>
+      								</select>
+								<span style="color:red" ng-show="newBookingForm.v.$touched && newBookingForm.v.$invalid">
+									<span ng-show="newBookingForm.v.$error.required">Vehicle is required.</span>
+								</span>
+           					</div>
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">AC / Non AC *</label>
+
+      								<select ng-change="acnonacCheck()" ng-model="acnonac" class="form-control" name="ac" tabindex="10" required >
+                                    					<option value="">Select</option>
+        								<option value="AC">AC</option>
+        								<option value="Non AC">Non AC</option>
+      								</select>
+								<span style="color:red" ng-show="newBookingForm.ac.$touched && newBookingForm.ac.$invalid">
+									<span ng-show="newBookingForm.ac.$error.required">AC / NonAC is required.</span>
+								</span>
+          					</div>
+    					</div>&nbsp;
+                        <!--/form-group-->
+
+<!--
+		<div class="large-padded-row">
+
+
+        <div class="padded-row">
+          <script type="text/ng-template" id="/my-custom-template.html">
+          <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+           
+            <input ng-model="searchStr"
+              ng-disabled="disableInput"
+              type="text"
+              placeholder="{{placeholder}}"
+              ng-focus="onFocusHandler()"
+              class="{{inputClass}}"
+              ng-focus="resetHideResults()"
+              ng-blur="hideResults($event)"
+              autocapitalize="off"
+              autocorrect="off"
+              autocomplete="off"
+              ng-change="inputChangeHandler(searchStr)"/>
+            <div class="angucomplete-dropdown" ng-show="showDropdown">
+              <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+              <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+              <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+                <div ng-if="imageField" class="angucomplete-image-holder">
+                  <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+                  <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+                </div>
+                <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+                <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>
+                <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+                <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{{result.description}}</div>
+              </div>
+              <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { name: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+                <div class="angucomplete-title">Select custom country '{{ searchStr }}'</div> 
+              </div>
+            </div>
+          </div>
+          </script>
+        </div>
+      </div>
+
+     
+      <div class="large-padded-row">
+        <div angucomplete-alt
+          id="ex14"
+          placeholder="Search countries"
+          pause="100" 
+	  selected-object="selectedParty"
+          local-data="partyDetails"
+          search-fields="gsx$name.$t,gsx$mobileno.$t"
+          title-field="gsx$name.$t"
+	  description-field="gsx$mobileno.$t"
+          minlength="1"
+          input-class="form-control form-control-small"
+          match-class="highlight"
+          template-url="/my-custom-template.html">
+        </div>
+<div class="result">
+          <div ng-show="countrySelected14">
+            <span ng-if="!countrySelected14.originalObject.custom">
+            You selected <span class="bold-span">{{countrySelected14.originalObject.gsx$name.$t}}</span> which has a country code of <span class="bold-span">{{countrySelected14.originalObject.gsx$mobileno.$t}}</span>
+            </span>
+            <span ng-if="countrySelected14.originalObject.custom">
+              You selected a custom country <span class="bold-span">{{countrySelected14.originalObject.name}}</span>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+
+-->
+
+
+                        <!--form-group-->
+                        <div class="form-group">
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Party *</label>
+
+						<autocomplete ng-model="partyname" class="form-control input-group-lg reg_name" attr-placeholder="" click-activation="false" data="movies" on-type="doSomething" on-select="doSomethingElse"></autocomplete>
+						
+           					</div>
+
+						<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Contact No</label>
+						 <!--<input type="text" ng-model="mobile" class="form-control input-group-lg reg_name" placeholder="Mobile No"> -->
+             					<input type="text" ng-model="mobileno" class="form-control input-group-lg reg_name" placeholder="Mobile No">
+           					</div>
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                        <div class="form-group" >
+
+                            <div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Email</label>
+						<!-- <input type="text" ng-model="email" class="form-control input-group-lg reg_name" placeholder="Email Address"> -->
+             					<input ng-model="email" class="form-control" type="text" name="firstname" title="Enter first name" placeholder="Enter the email">
+           					</div>
+
+						<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Flight / Train No</label>
+             					<input ng-model="flighttrainno" id="" class="form-control input-group-lg reg_name" type="text" name="firstname" placeholder="Flight / Train No">
+           					</div>
+
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+
+			<!--form-group-->
+                        <div class="form-group">
+           					<div class="col-sm-12">
+             					<label for="comment">Pickup Address</label>
+      							<textarea ng-model="pickupaddress" class="form-control" rows="4" placeholder="Enter the Pickup Address"></textarea>
+           					</div>
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                        <div class="form-group">
+           					<div class="col-sm-12">
+             					<label for="comment">Drop Address</label>
+      							<textarea ng-model="dropaddress" class="form-control" rows="4" placeholder="Enter the Drop Address"></textarea>
+           					</div>
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                        <div class="form-group">
+           					<div class="col-sm-12">
+             					<label for="comment">Remarks</label>
+      							<textarea ng-model="remarks" class="form-control" rows="3" placeholder="Enter the Remarks"></textarea>
+           					</div>
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+
+
+				</fieldset>
+
+    			<fieldset class="col-md-5 classWithPad">
+					<legend style="width:auto">Trip</legend>
+				<div class="form-group"></div>
+				<!--form-group-->
+                        		<div class="form-group">
+           					<div class="col-sm-12">
+             					<label style="font-size:12px" for="" class="">Trip Details *</label>
+						<autocomplete ng-model="trip" class="form-control input-group-lg reg_name" attr-placeholder="" click-activation="true" data="movies1" on-type="doSomething1" on-select="doSomethingElse1"></autocomplete>
+
+           				</div>
+                        	</div>&nbsp;
+                        	<!--/form-group-->
+
+				<!--form-group-->
+                        <div class="form-group">
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Advance Paid</label>
+             					<input ng-model="advancepaid" ng-change="funcAdv()" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                            <div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Balance to Pay</label>
+             					<input ng-model="balancetopay" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                        <div class="form-group">
+           			<div class="col-sm-6">
+             				<label style="font-size:12px" for="" class="">Trip Charges</label>
+             				<input ng-model="tripcharges" class="form-control input-group-lg reg_name" type="text">
+
+           			</div>
+
+						<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Status of Payment</label>
+             					<input ng-model="statusofpayment" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+			</div>&nbsp;
+                        <!--/form-group-->
+
+			<!--form-group-->
+                        <div class="form-group">
+                            <div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Hrs Allowed</label>
+             					<input ng-model="hrsallowed" id="" class="form-control input-group-lg reg_name" type="text" >
+           					</div>
+                            <div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Kms Allowed</label>
+             					<input ng-model="kmsallowed" id="" class="form-control input-group-lg reg_name" type="text" >
+           					</div>
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                        <div class="form-group">
+
+                            <div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Extra Hr Rate</label>
+             					<input ng-model="extrahrrate" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                            <div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Extra Km Rate</label>
+             					<input ng-model="extrakmrate" class="form-control input-group-lg reg_name" type="text">
+           					</div>
+                        </div>&nbsp;
+                        <!--/form-group-->
+
+                        <!--form-group-->
+                    	<div class="form-group">
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Driver</label>
+
+      								<select ng-model="driver" class="form-control" id="sel1">
+                                    					<option value="">Select</option>
+        								<option ng-repeat="driver in driverDetails">{{driver.gsx$name.$t}}</option>
+
+      								</select>
+           					</div>
+           					<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">Vehicle No</label>
+
+      								<select ng-model="vehicleno" class="form-control" id="sel1">
+                                    					<option value="">Select</option>
+        								<option ng-repeat="vehicle in vehicleDetails">{{vehicle.gsx$number.$t}}</option>
+      								</select>
+          					</div>
+    					</div>&nbsp;
+                        <!--/form-group-->
+
+
+			<!--form-group-->
+                    	<div class="form-group">
+					
+					<input type="hidden" ng-model="totalhrsallowed" >
+					<input type="hidden" ng-model="totalkmsallowed" >
+					<input type="hidden" ng-model="batacalextrahrrate" >
+					<input type="hidden" ng-model="batacalextrakmrate" >
+					<input type="hidden" ng-model="batacaltripcharge" >				
+
+           					
+    			</div>&nbsp;
+                        <!--/form-group-->
+
+                        </fieldset>
+
+
+
+                <div class="col-md-12">
+                	<div  class="col-md-6">
+
+                    </div>
+                    <div style="padding:20px;" class="col-sm-6">
+                    	<button ng-click="SendData()" style="width:150px; margin-left:80px" type="button" class="btn btn-default">Save</button>
+            			<button ng-click="cancel()" style="width:150px; margin-left:60px" type="button" class="btn btn-default">Cancel</button>
+                    </div>
+            	</div>
+                </form>
+
+				<div class="clearfix"></div>
+        		</div>
+
+
+
+     		</div>
+
+
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="./datetimepicker3/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./datetimepicker3/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./datetimepicker3/datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+    $('.form_startdatetime').datetimepicker({
+        //language:  'fr',
+	pickerPosition: "auto",
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+
+    });
+    $('.form_enddatetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+
+    });
+
+	$('.form_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_traveldate').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		showMeridian: true,
+		startView: 1,
+		toggleActive: true,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
+
+
+
+
+	<!--AutoComplete -->
+       <!-- <script src="autocomplete/angular-touch.min.js"></script>
+      <script src="autocomplete/app.js"></script>
+         <script src="autocomplete/main-controller.js"></script>
+       <script src="autocomplete/angucomplete.js"></script> -->
+	
+	<!--Angucomplete-alt -->
+
+	<!--<script src="angucomplete-alt/js/libs/angucomplete-alt.js"></script>
+	 <script src="angucomplete-alt/js/app.js"></script>  -->
+
+	<!-- Allmighty autocomplete -->
+	<script type="text/javascript" src="app_new_trip.js"></script>
+	<script type="text/javascript" src="allmighty-autocomplete/script/autocomplete.js"></script>
+
+
+</body>
+</html>

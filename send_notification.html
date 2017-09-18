@@ -1,0 +1,686 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Autocare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular.js"></script>
+
+<style type="text/css" media="print">
+   .no-print { display: none; }
+</style>
+  
+</head>
+<body ng-app="app" ng-controller="myCtrl">
+<header class="center clearfix" id="navtop"> <a href="home.html"
+        class="logo fleft"><img src="images/logo.png" alt="Sri Aurobindo Autocare"></a>
+     <!-- <nav class="fright">
+        <ul>
+		<li><a href="#" class="">Home</a></li>
+		<li><a href="#">Tours</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Taxi Booking</a></li>
+		<li><a href="#">Tariffs</a></li>
+	</ul>
+	<ul>
+		<li><a href="#">Booking Instructions</a></li>
+		<li><a href="#" >Contact</a></li>
+	</ul>
+      </nav>-->
+    </header>
+<div class="container">
+<div align="right" style="padding-bottom::3px">
+ <label>Sivakumar&nbsp;&nbsp;</label>
+ <button type="button" class="btn btn-default">Logout</button>
+</div>
+	<div class="panel panel-default">
+    	<div align="left" class="panel-heading">
+        <h4>	
+        <label>Bookings</label>
+       </h4>
+        </div>
+			<div class="panel-body">
+            			<div class="col-sm-12">
+             				<div class="col-sm-2" style="margin-left:15px" >
+                				<button style="width:100px;"type="button" ng-click="goBack()" class="btn btn-default no-print">Back</button>
+                    			</div>
+				</div> 
+            
+          
+    			<fieldset class="col-md-6 classWithPad">    	
+					<legend style="width:auto">View Booking</legend>
+                      <form>
+			<div class="form-group col-sm-12"></div>
+                      <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_no}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking Date</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_date | date:'dd-MM-yyyy'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                       
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Booking Mode</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_mode}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Trip Taken by</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_taken_by}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                                         
+                       
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Travel Date</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.travel_date | date : 'dd-mm-yyyy'}}</label>
+           						</div>
+                            
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Reporting Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.booking_no | date : 'hh:mm a'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Start Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.start_date_time | date:'dd-MM-yyyy hh:mm a'}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">End Time</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.end_date_time | date:'dd-MM-yyyy hh:mm a'}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Vehicle</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.vehicle}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">AC / Non AC</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.ac_nonac}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Trip Details</label>
+           					</div>
+                            <div class="col-sm-9">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_details}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Party</label>
+           					</div>
+                            <div class="col-sm-9">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.party}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                         <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Contact No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.mobile}}</label>
+           						</div>
+                            
+           					<div class="col-sm-1">
+             						<label style="font-size:12px" for="" class="">email</label>
+                                </div>
+                                <div class="col-sm-4">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.email}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                    
+                    	 <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Flight / Train No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.flight_train_no}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Pickup / Drop Address</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.pickup_drop_address}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="">Address</label>
+           					</div>
+                            <div class="col-sm-9">
+             					<label style="font-size:12px" for="">{{tripDetails.address}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">Remarks</label>
+           					</div>
+                            <div class="col-sm-6">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.remarks}}</label>
+           					</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Advance Paid</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.advance_paid}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Balance to Pay</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.balance_to_pay}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Trip Charges</label>
+           					</div>
+                            <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.trip_charges}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Hrs Allowed</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.hrs_allowed}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Kms Allowed</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.kms_allowed}}</label>
+           						</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                        <div class="form-group col-sm-12">
+           					<div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Status of Payment</label>
+           					</div>
+                            <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.status_of_payment}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Extra Hr Rate</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_hr_rate}}</label>
+           						</div>
+                            <div class="col-sm-2">
+             					<label style="font-size:12px" for="" class="">Extra Km Rate</label>
+             					</div>
+                                <div class="col-sm-2">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.extra_km_rate}}</label>
+           						</div>
+                        </div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group col-sm-12">
+           						<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Driver</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.driver}}</label>
+           						</div>
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">Vehicle No</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">{{tripDetails.vehicle_no}}</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                    
+					</form>
+				</fieldset>				
+                
+                <fieldset class="col-md-5 classWithPad">    	
+					<legend style="width:auto">Edit Notifications</legend>
+		    <form>	
+			
+			<!--form-group-->
+                    		<div class="form-group col-sm-12">			
+                                	<div class="col-sm-3" >	</div>	
+             				<div class="col-sm-4">
+             					<label style="font-size:12px" for="" class="">SMS</label>
+						<select ng-change="sms()" ng-model="selectedSms" class="form-control" name="ac" tabindex="10" required >
+                                    					<option value="">Select</option>
+									<option value="confirmsms">Confirm SMS</option>
+									<option value="safejourneysms">Safe Journey SMS</option>
+        								<option value="driverdetails">Driver Details</option>
+      								</select>
+                                	</div>
+                                	<div class="col-sm-4">
+             					<label style="font-size:12px" for="" class="">Email</label>
+						<select ng-change="email()" ng-model="selectedEmail" class="form-control" name="ac" tabindex="10" required >
+                                    					<option value="">Select</option>
+        								<option value="confirmemail">Confirm email</option>
+									<option value="safejourney">Safe Journey</option>
+        								<option value="driverdetails">Driver Details</option>
+      								</select>
+           				</div>
+                        	</div>
+				
+                        <!--/form-group--> 
+
+			<!--form-group-->
+                    		<div class="form-group col-sm-12">
+             				<textarea ng-model="messageArea" class="form-control" rows="7"></textarea>
+                        	</div>
+				<span style="color:red; margin-left:15px">{{errorMsg}}</span>
+				<span style="color:green; margin-left:15px">{{successMsg}}</span>
+                        <!--/form-group--> 
+				
+			<!--form-group-->
+                    		<div class="form-group col-sm-12">			
+                                	<div class="col-sm-8" >	</div>	
+             				<div class="col-sm-4" >
+                				<button ng-click="btnSend()" type="button" style="width:100px;" class="btn btn-default no-print">{{sendbtn}}</button>
+                   			</div>
+                        	</div>
+                        <!--/form-group--> 
+                                         
+                        <!--form-group-->
+                    		<div class="form-group">
+           				<div class="col-sm-6">
+             					<label style="font-size:12px" for="" class="">SMS</label>
+                                	</div>
+           				<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">20-04-2017</label>
+                                	</div>
+                                	<div class="col-sm-3">
+             					<label style="font-size:12px" for="" class="">04:30 PM</label>
+           				</div>
+                                
+    				</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group">
+           						<div class="col-sm-12">
+             						<label style="font-size:12px" for="" class="">Your booking for Chennai Airport Drop has been confirmed for 10-05-2017 at 05:15 pm. etc.
+</label>
+                                </div>
+    					</div>&nbsp;
+                        <!--/form-group-->
+                        
+                        
+                        <!--form-group-->
+                    	<div class="form-group">
+           						<div class="col-sm-6">
+             						<label style="font-size:12px" for="" class="">Email</label>
+                                </div>
+                               
+                            
+           					<div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">20-04-2017</label>
+                                </div>
+                                <div class="col-sm-3">
+             						<label style="font-size:12px" for="" class="">04:30 PM</label>
+           						</div>
+                                
+    					</div>
+                        <!--/form-group-->
+                        
+                        <!--form-group-->
+                    	<div class="form-group">
+           						<div class="col-sm-12">
+             						<label style="font-size:12px" for="" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt malesuada leo id efficitur. Aliquam lacus mi, cursus at urna ut, porttitor aliquam nisi.
+</label>
+                                </div>
+    					</div>&nbsp;
+                        <!--/form-group-->	
+
+
+
+			</form>
+  
+				<div class="clearfix"></div>
+        		</div>
+                
+                
+                
+     		</div>
+           
+            
+		</div>           
+	</div>
+</div>
+
+<script>
+var app = angular.module('app', [], function($locationProvider){
+	$locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+});
+});
+app.controller('myCtrl', function($scope, $location, $http) {
+	$scope.tripId = $location.search().id;
+
+	$scope.sendbtn = "Send";
+
+	
+	
+	var td;
+	var driver;
+	$http.get("http://54.179.185.66:8080/trip", {params:{"id": $scope.tripId}})
+		.then( function(response){
+			td = response.data;
+			$scope.tripDetails = td;
+			driver = td.driver;
+		});
+
+	var driverMobileNo;	
+	
+	$scope.email = function(){
+		$scope.messageArea = "";
+		$scope.selectedSms = "";
+		$scope.errorMsg = "";
+		$scope.successMsg = "";
+		$scope.sendbtn = "Send Email";
+		
+		if ($scope.selectedEmail == "confirmemail"){
+			//get SMS / Email's from google spreadsheets
+			$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/6/public/values?alt=json")
+        		.then(function(response) {
+				var smsemails = response.data.feed.entry;
+				var oldstr = smsemails[0].gsx$_cokwr.$t;
+				var newstr = oldstr.replace(/@partyname/g,td.party).replace(/@acnonac/g,td.ac_nonac).replace(/@vehicle/g,td.vehicle).replace(/@tripcharges/g,td.trip_charges).replace(/@hrsallowed/g,td.hrs_allowed);
+				$scope.messageArea = newstr;
+			});
+		} else if($scope.selectedEmail == "safejourney"){
+				//get SMS / Email's from google spreadsheets
+			$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/6/public/values?alt=json")
+        		.then(function(response) {
+				var smsemails = response.data.feed.entry;
+				var oldstr = smsemails[1].gsx$_cokwr.$t;
+				var newstr = oldstr.replace(/@partyname/g,td.party);
+				$scope.messageArea = newstr;
+			});
+		} else if($scope.selectedEmail == "driverdetails"){
+
+			//get driver details from google spreadsheets
+			$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/1/public/values?alt=json")
+        		.then(function(response) {
+	
+				var driverDetails = response.data.feed.entry;
+				$scope.driverDetails = driverDetails;
+				var anandaBabu = driverDetails[0].gsx$mobile.$t;
+				var jardhees = driverDetails[1].gsx$mobile.$t;
+				var ashokKumar = driverDetails[2].gsx$mobile.$t;
+				var victor = driverDetails[3].gsx$mobile.$t;
+				var pandian = driverDetails[4].gsx$mobile.$t;
+				var vijayaguru = driverDetails[5].gsx$mobile.$t;
+				var kanagaraj = driverDetails[6].gsx$mobile.$t;
+			
+				
+				if(driver == "Ananda Babu"){
+					driverMobileNo = anandaBabu;
+				}else if(driver == "Jardhees"){
+					driverMobileNo = jardhees;
+				}else if(driver == "Ashok Kumar"){
+					driverMobileNo = ashokKumar;
+				}else if(driver == "Victor"){
+					driverMobileNo = victor;
+				}else if(driver == "Pandian"){
+					driverMobileNo = pandian;
+				}else if(driver == "Vijayaguru"){
+					driverMobileNo = vijayaguru;
+				}else if(driver == "Kanagaraj"){
+					driverMobileNo = kanagaraj;
+				}
+			
+		
+			
+				//get SMS / Email's from google spreadsheets
+				$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/6/public/values?alt=json")
+	        		.then(function(response) {
+				
+					var smsemails = response.data.feed.entry;
+					var oldstr = smsemails[2].gsx$_cokwr.$t;
+					var newstr = oldstr.replace(/@partyname/g,td.party).replace(/@drivername/g,td.driver).replace(/@drivermobileno/g,driverMobileNo).replace(/@reportTime/g,td.reporting_time).replace(/@travelDate/g,td.travel_date);
+					$scope.messageArea = newstr;
+				});
+			});
+		}
+
+	}
+
+	$scope.sms = function(){
+		$scope.messageArea = "";
+		$scope.selectedEmail = "";
+		$scope.errorMsg = "";
+		$scope.successMsg = "";
+		$scope.sendbtn = "Send SMS";
+
+		if ($scope.selectedSms == "confirmsms"){
+			//get SMS / Email's from google spreadsheets
+			$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/6/public/values?alt=json")
+        		.then(function(response) {
+				var smsemails = response.data.feed.entry;
+				var oldstr = smsemails[3].gsx$_cokwr.$t;
+				var newstr = oldstr.replace(/@partyname/g,td.party).replace(/@acnonac/g,td.ac_nonac).replace(/@vehicle/g,td.vehicle).replace(/@tripcharges/g,td.trip_charges).replace(/@hrsallowed/g,td.hrs_allowed);
+				$scope.messageArea = newstr;
+			});
+		} else if($scope.selectedSms == "safejourneysms"){
+				//get SMS / Email's from google spreadsheets
+			$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/6/public/values?alt=json")
+        		.then(function(response) {
+				var smsemails = response.data.feed.entry;
+				var oldstr = smsemails[4].gsx$_cokwr.$t;
+				var newstr = oldstr.replace(/@partyname/g,td.party);
+				$scope.messageArea = newstr;
+			});
+		}else if($scope.selectedSms == "driverdetails"){
+			
+			
+			//get driver details from google spreadsheets
+			$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/1/public/values?alt=json")
+        		.then(function(response) {
+	
+				var driverDetails = response.data.feed.entry;
+				$scope.driverDetails = driverDetails;
+				var anandaBabu = driverDetails[0].gsx$mobile.$t;
+				var jardhees = driverDetails[1].gsx$mobile.$t;
+				var ashokKumar = driverDetails[2].gsx$mobile.$t;
+				var victor = driverDetails[3].gsx$mobile.$t;
+				var pandian = driverDetails[4].gsx$mobile.$t;
+				var vijayaguru = driverDetails[5].gsx$mobile.$t;
+				var kanagaraj = driverDetails[6].gsx$mobile.$t;
+			
+				
+				if(driver == "Ananda Babu"){
+					driverMobileNo = anandaBabu;
+				}else if(driver == "Jardhees"){
+					driverMobileNo = jardhees;
+				}else if(driver == "Ashok Kumar"){
+					driverMobileNo = ashokKumar;
+				}else if(driver == "Victor"){
+					driverMobileNo = victor;
+				}else if(driver == "Pandian"){
+					driverMobileNo = pandian;
+				}else if(driver == "Vijayaguru"){
+					driverMobileNo = vijayaguru;
+				}else if(driver == "Kanagaraj"){
+					driverMobileNo = kanagaraj;
+				}
+			
+		
+			
+				//get SMS / Email's from google spreadsheets
+				$http.get("https://spreadsheets.google.com/feeds/list/1v3vM_9ioLk8xFraGfT6DsDsuk56qSHum-KLxi95q0z4/6/public/values?alt=json")
+	        		.then(function(response) {
+				
+					var smsemails = response.data.feed.entry;
+					var oldstr = smsemails[2].gsx$_cokwr.$t;
+					var newstr = oldstr.replace(/@partyname/g,td.party).replace(/@drivername/g,td.driver).replace(/@drivermobileno/g,driverMobileNo).replace(/@reportTime/g,td.reporting_time).replace(/@travelDate/g,td.travel_date);
+					$scope.messageArea = newstr;
+				});
+			});
+				
+		}
+
+	}
+
+	
+
+	$scope.btnSend = function(){
+
+		if($scope.selectedEmail == null && $scope.selectedSms == null){
+			$scope.errorMsg = "Please select Email or SMS";
+			return;
+		}
+
+		if($scope.sendbtn == "Send Email"){
+
+			var data = {
+				emailaddress : td.email,
+				subject : $scope.selectedEmail,
+				messages : $scope.messageArea
+			}
+			var config = {
+                		headers : {
+               	     		'Content-Type': 'application/json'
+                		}
+            		};
+			if($scope.messageArea != ""){
+
+				$http.post("http://54.179.185.66:8080/sendemail", data,config)
+				.then( function(response){
+					$scope.successMsg = "E-Mail Sent Successfully";
+					$scope.messageArea = "";
+				
+				});
+			}else {
+				$scope.errorMsg = "Message Area should not be empty";
+			}
+
+		} else if ($scope.sendbtn == "Send SMS"){
+
+			var data = {
+				mobileno : td.mobile,
+				message : $scope.messageArea
+			}
+			var config = {
+                		headers : {
+               	     		'Content-Type': 'application/json'
+                		}
+            		};
+			if($scope.messageArea != ""){
+
+				$http.post("http://54.179.185.66:8080/sendsms", data,config)
+				.then( function(response){
+					$scope.successMsg = "SMS Sent Successfully";
+					$scope.messageArea = "";		
+				});
+			}else {
+				$scope.errorMsg = "Message Area should not be empty";
+			}
+		}
+	}
+
+	$scope.goBack = function(){
+		window.history.back();
+	}
+
+});
+
+</script>
+
+
+
+
+
+</body>
+</html>
